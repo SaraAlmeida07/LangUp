@@ -1,0 +1,16 @@
+{
+  "palavras": [
+    {
+      "id": 1,
+      "palavra": "Saudade",
+      "traducao": "Longing",
+      "definicao": "A deep emotional state of nostalgic or melancholic longing...",
+      "exemplo": "A saudade que sinto dos meus avós é imensa.",
+      "dificuldade": "medio"
+    }
+  ],
+  "usuario": {
+    "nome": "Sofia",
+    "email": "sofia@email.com"
+  }
+}

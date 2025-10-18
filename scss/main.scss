@@ -1,0 +1,7 @@
+// Arquivo: main.scss
+
+// Importa todos os nossos módulos parciais. A ordem importa!
+@use 'variables';
+@use 'mixins';
+@use 'base';
+@use 'layout';

@@ -1,0 +1,18 @@
+// Arquivo: _base.scss
+@use 'variables'; // Importa as variáveis para podermos usá-las
+
+@use "sass:color";
+
+// Importa a fonte Poppins diretamente do Google Fonts
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+body {
+  font-family: variables.$fonte-principal;
+}
+
+// Sobrescrevendo variáveis do Bootstrap com as nossas
+:root {
+  --bs-primary: #{variables.$cor-primaria};
+  --bs-primary-rgb: #{color.red(variables.$cor-primaria)}, #{color.green(variables.$cor-primaria)}, #{blue(variables.$cor-primaria)};
+  --bs-body-color: #{variables.$cor-texto};
+}

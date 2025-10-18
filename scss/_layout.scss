@@ -1,0 +1,38 @@
+// Arquivo: _layout.scss
+@use 'variables'; // Importa as variáveis
+
+@use "sass:color";
+
+// Estilo para o botão primário do Bootstrap
+.btn-primary {
+  --bs-btn-bg: #{variables.$cor-primaria};
+  --bs-btn-border-color: #{variables.$cor-primaria};
+  
+  // Exemplo de Aninhamento (Nesting)
+
+&:hover {
+  background-color: color.adjust(variables.$cor-primaria, $lightness: -5%);
+  border-color: color.adjust(variables.$cor-primaria, $lightness: -5%);
+}
+}
+
+// Nosso botão customizado, agora com aninhamento
+.btn-secondary-custom {
+  background-color: variables.$cor-secundaria;
+  border-color: variables.$cor-secundaria;
+  color: #fff;
+
+  &:hover {
+    background-color: color.adjust(variables.$cor-secundaria, 5%);
+    border-color: color.adjust(variables.$cor-secundaria, 5%);
+  }
+}
+
+// Classes de fundo para as páginas
+body.login-background {
+  background-color: variables.$cor-fundo-login; 
+}
+
+body.app-background {
+  background-color: variables.$cor-fundo-app;
+}
