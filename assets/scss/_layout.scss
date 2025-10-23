@@ -3,6 +3,16 @@
 
 @use "sass:color";
 
+@use 'mixins';
+
+body.login-background {
+  background-color: variables.$cor-fundo-login; 
+  min-height: 100vh; // Garante que o body ocupe a altura total da tela
+  @include mixins.centralizar-flex;
+
+}
+  
+
 // Estilo para o botão primário do Bootstrap
 .btn-primary {
   --bs-btn-bg: #{variables.$cor-primaria};
@@ -16,15 +26,15 @@
 }
 }
 
-// Nosso botão customizado, agora com aninhamento
+//  botão customizado, agora com aninhamento
 .btn-secondary-custom {
   background-color: variables.$cor-secundaria;
   border-color: variables.$cor-secundaria;
   color: #fff;
 
   &:hover {
-    background-color: color.adjust(variables.$cor-secundaria, 5%);
-    border-color: color.adjust(variables.$cor-secundaria, 5%);
+    background-color: color.adjust(variables.$cor-secundaria, $lightness: -5%);
+    border-color: color.adjust(variables.$cor-secundaria, $lightness: -5%);
   }
 }
 
@@ -35,4 +45,5 @@ body.login-background {
 
 body.app-background {
   background-color: variables.$cor-fundo-app;
+
 }

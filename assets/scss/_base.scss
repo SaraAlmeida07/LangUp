@@ -13,6 +13,6 @@ body {
 // Sobrescrevendo variáveis do Bootstrap com as nossas
 :root {
   --bs-primary: #{variables.$cor-primaria};
-  --bs-primary-rgb: #{color.red(variables.$cor-primaria)}, #{color.green(variables.$cor-primaria)}, #{blue(variables.$cor-primaria)};
+  --bs-primary-rgb: #{color.channel(variables.$cor-primaria, "red")}, #{color.channel(variables.$cor-primaria, "green")}, #{color.channel(variables.$cor-primaria, "blue")};
   --bs-body-color: #{variables.$cor-texto};
 }
