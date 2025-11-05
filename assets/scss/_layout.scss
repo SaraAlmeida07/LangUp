@@ -30,7 +30,7 @@ body.login-background {
 .btn-secondary-custom {
   background-color: variables.$cor-secundaria;
   border-color: variables.$cor-secundaria;
-  color: #fff;
+  color: #fff;.header-logo
 
   &:hover {
     background-color: color.adjust(variables.$cor-secundaria, $lightness: -5%);
@@ -45,5 +45,23 @@ body.login-background {
 
 body.app-background {
   background-color: variables.$cor-fundo-app;
+  padding-top: 100px;    // Adiciona espaço para o header fixo
+  padding-bottom: 90px; // Adiciona espaço para a navbar fixa
 
+}
+
+// Estilo para o logo nos cabeçalhos
+.header-logo {
+  height: 80px;
+  // width: auto;
+}
+
+// Estilo para o Botão de Ação Flutuante
+.fab {
+  width: 60px;
+  height: 60px;
+  bottom: 100px;
+  right: 20px;
+  font-size: 28px;
+  z-index: 100;
 }

@@ -9,6 +9,14 @@ body {
   --bs-body-color: #111827;
 }
 
+body.login-background {
+  background-color: #343a40;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .btn-primary {
   --bs-btn-bg: #1E3A8A;
   --bs-btn-border-color: #1E3A8A;
@@ -23,7 +31,7 @@ body {
   border-color: #F97316;
   color: #fff;
 }
-.btn-secondary-custom:hover {
+.header-logo .btn-secondary-custom:hover {
   background-color: rgb(239.3368200837, 101.6924686192, 6.1631799163);
   border-color: rgb(239.3368200837, 101.6924686192, 6.1631799163);
 }
@@ -34,4 +42,19 @@ body.login-background {
 
 body.app-background {
   background-color: #F9FAFB;
+  padding-top: 100px;
+  padding-bottom: 90px;
+}
+
+.header-logo {
+  height: 80px;
+}
+
+.fab {
+  width: 60px;
+  height: 60px;
+  bottom: 100px;
+  right: 20px;
+  font-size: 28px;
+  z-index: 100;
 }/*# sourceMappingURL=main.css.map */
