@@ -49,7 +49,7 @@
   </nav>   
 
   <!--Headeer Mobile-->
-  <header class="container pt-4 pb-3 d-lg-none fixed-top bg-white">
+  <header class="container pt-4 pb-3 d-lg-none bg-white shadow-sm">
     <div class="d-flex justify-content-between align-items-center">
       <img src="images/logo_LangUp.png" alt="Logo LangUp" class="header-logo">
       
@@ -60,35 +60,40 @@
   </header>
 
     <main class="container">
-    <form id="form-cadastro">
-      
-      <div class="mb-3">
-        <label for="palavra" class="form-label fw-bold">Palavra/Frase</label>
-        <input type="text" class="form-control form-control-lg rounded-3" id="palavra" placeholder="Ex: Hello" required>
+      <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10"> <form id="form-cadastro">
+          <form id="form-cadastro">
+
+            
+            <div class="mb-3">
+              <label for="palavra" class="form-label fw-bold">Palavra/Frase</label>
+              <input type="text" class="form-control  rounded-3" id="palavra" placeholder="Ex: Hello" required>
+            </div>
+
+          <div class="mb-3">
+              <label for="traducao" class="form-label fw-bold">Tradução</label>
+              <input type="text" class="form-control  rounded-3" id="traducao" placeholder="Ex: Olá" required>
+          </div>  
+
+          <div class="mb-3">
+              <label for="definicao" class="form-label fw-bold">Definição (opcional)</label>
+              <textarea class="form-control  rounded-3" id="definicao" rows="3" placeholder="Ex: Uma saudação em inglês"></textarea>
+          </div>
+
+          <div class="mb-3">
+              <label for="exemplo" class="form-label fw-bold">Exemplo (opcional)</label>
+              <input type="text" class="form-control  rounded-3" id="exemplo" placeholder="Ex: Hello, how are you?">
+          </div>
+
+          
+
+          <div class="text-end">
+              <button type="submit" class="btn btn-primary  fw-bold text-uppercase">Salvar Palavra</button>
+            </div>
+
+          </form>
+        </div>
       </div>
-
-    <div class="mb-3">
-        <label for="traducao" class="form-label fw-bold">Tradução</label>
-        <input type="text" class="form-control form-control-lg rounded-3" id="traducao" placeholder="Ex: Olá" required>
-    </div>  
-
-    <div class="mb-3">
-        <label for="definicao" class="form-label fw-bold">Definição (opcional)</label>
-        <textarea class="form-control form-control-lg rounded-3" id="definicao" rows="3" placeholder="Ex: Uma saudação em inglês"></textarea>
-    </div>
-
-    <div class="mb-3">
-        <label for="exemplo" class="form-label fw-bold">Exemplo (opcional)</label>
-        <input type="text" class="form-control form-control-lg rounded-3" id="exemplo" placeholder="Ex: Hello, how are you?">
-    </div>
-
-    
-
-    <div class="d-grid">
-        <button type="submit" class="btn btn-primary btn-lg fw-bold text-uppercase">Salvar Palavra</button>
-      </div>
-
-    </form>
   </main>
   
   <nav class="navbar navbar-expand bg-white shadow-lg fixed-bottom rounded-top-4 d-lg-none">

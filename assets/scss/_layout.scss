@@ -45,8 +45,17 @@ body.login-background {
 
 body.app-background {
   background-color: variables.$cor-fundo-app;
-  padding-top: 100px;    // Adiciona espaço para o header fixo
-  padding-bottom: 90px; // Adiciona espaço para a navbar fixa
+   // Adiciona espaço para a navbar fixa
+
+  // Aplica o padding-top APENAS em telas grandes (para o header de desktop)
+  @media (min-width: 992px) { 
+    padding-top: 100px; 
+  }
+
+  // Aplica o padding-bottom APENAS em telas pequenas (para a navbar mobile)
+  @media (max-width: 991.98px) { 
+    padding-bottom: 90px;
+  }
 
 }
 

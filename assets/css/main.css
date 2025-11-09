@@ -42,8 +42,16 @@ body.login-background {
 
 body.app-background {
   background-color: #F9FAFB;
-  padding-top: 100px;
-  padding-bottom: 90px;
+}
+@media (min-width: 992px) {
+  body.app-background {
+    padding-top: 100px;
+  }
+}
+@media (max-width: 991.98px) {
+  body.app-background {
+    padding-bottom: 90px;
+  }
 }
 
 .header-logo {
