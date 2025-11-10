@@ -30,13 +30,13 @@
     <div class="collapse navbar-collapse" id="navbarNavDesktop">
         <ul class="navbar-nav mx-auto">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link active" aria-current="page" href="dashboard.html">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Minhas Palavras</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Flashcards</a>
+            <a class="nav-link" href="flashcards.html">Flashcards</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Progresso</a>
@@ -50,16 +50,19 @@
   </nav>   
 
   <!--Headeer Mobile-->
-  <header class="container pt-4 pb-3 d-lg-none  bg-white">
-    <div class="d-flex justify-content-between align-items-center">
-      <img src="images/logo_LangUp.png" alt="Logo LangUp" class="header-logo">
-      
-      <a href="perfil.html">
-          <i class="bi bi-gear-fill fs-4 text-body-secondary"></i>
+ <header class="container d-lg-none bg-white shadow-sm fixed-top">
+  <div class="d-flex align-items-center py-3">
+    <div class="col-2">
+      <a href="dashboard.html" class="text-decoration-none text-body-secondary">
+          <i class="bi bi-arrow-left fs-4"></i>
       </a>
     </div>
-  </header>
-  
+    <div class="col-8 text-center">
+      <h1 class="h4 fw-bold mb-0">Home</h1>
+    </div>
+    <div class="col-2"></div>
+  </div>
+</header>
 
   <main class="container mt-lg-5">
     
@@ -101,7 +104,7 @@
     </section>
   </main>
 
- <a href="cadastro.html" class="btn btn-primary shadow-lg rounded-circle position-fixed fab">
+ <a href="cadastro.html" class="btn btn-secondary-custom shadow-lg rounded-circle position-fixed fab">
   +
 </a>
 
@@ -115,7 +118,7 @@
                 <a href="#" class="nav-link d-flex flex-column align-items-center"><i class="bi bi-card-text fs-4"></i><span class="small">Palavras</span></a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link d-flex flex-column align-items-center"><i class="bi bi-stack fs-4"></i><span class="small">Flashcards</span></a>
+                <a href="flashcards.html" class="nav-link d-flex flex-column align-items-center"><i class="bi bi-stack fs-4"></i><span class="small">Flashcards</span></a>
             </li>
             <li class="nav-item">
                 <a href="perfil.html" class="nav-link d-flex flex-column align-items-center"><i class="bi bi-person-fill fs-4"></i><span class="small">Perfil</span></a>

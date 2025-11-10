@@ -48,9 +48,9 @@ body.app-background {
    // Adiciona espaço para a navbar fixa
 
   // Aplica o padding-top APENAS em telas grandes (para o header de desktop)
-  @media (min-width: 992px) { 
+   
     padding-top: 100px; 
-  }
+  
 
   // Aplica o padding-bottom APENAS em telas pequenas (para a navbar mobile)
   @media (max-width: 991.98px) { 
@@ -73,4 +73,41 @@ body.app-background {
   right: 20px;
   font-size: 28px;
   z-index: 100;
+}
+
+// Botões de dificuldade customizados para Flashcards
+
+.btn-facil {
+  background-color: #dcfce7 !important; // Verde claro
+  color: #166534 !important; // Verde escuro
+  border-color: #dcfce7 !important;
+  font-weight: 600;
+  &:hover {
+    background-color: #bbf7d0 !important;
+  }
+}
+
+.btn-medio {
+  background-color: #fef9c3 !important; // Amarelo claro
+  color: #854d0e !important; // Amarelo escuro
+  border-color: #fef9c3 !important;
+  font-weight: 600;
+  &:hover {
+    background-color: #fde047 !important;
+  }
+}
+
+.btn-dificil {
+  background-color: #fee2e2 !important; // Vermelho claro
+  color: #991b1b !important; // Vermelho escuro
+  border-color: #fee2e2 !important;
+  font-weight: 600;
+  &:hover {
+    background-color: #fecaca !important;
+  }
+}
+
+// Utility class for orange text
+.text-laranja {
+  color: variables.$cor-secundaria !important; // $cor-secundaria é o seu laranja
 }
