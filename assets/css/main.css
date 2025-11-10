@@ -63,6 +63,30 @@ body.app-background {
   z-index: 100;
 }
 
+/* 5. Estilos dos Cards da Dashboard             */
+.card-stats {
+  transition: all 0.2s ease-in-out;
+}
+.card-stats.card-stats-default {
+  background-color: #f3f4f6;
+}
+.card-stats.card-stats-default .h6 {
+  color: #374151 !important;
+  font-weight: 700;
+}
+.card-stats.card-stats-default .small, .card-stats.card-stats-default p {
+  color: #374151 !important;
+}
+.card-stats.card-stats-default .h3 {
+  color: #f97316 !important;
+}
+.card-stats.card-stats-default:hover {
+  background-color: #e0e7ff;
+}
+.card-stats.card-stats-default:hover .h6, .card-stats.card-stats-default:hover .small, .card-stats.card-stats-default:hover p {
+  color: #3730a3 !important;
+}
+
 .btn-facil {
   background-color: #dcfce7 !important;
   color: #166534 !important;

@@ -75,6 +75,46 @@ body.app-background {
   z-index: 100;
 }
 
+
+/* 5. Estilos dos Cards da Dashboard             */
+
+
+// Classe base para todos os cards de estatística
+
+.card-stats {
+  // Transição suave para o efeito de hover
+  transition: all 0.2s ease-in-out;
+
+  // Estilo Padrão (Cinza-Claro)
+  &.card-stats-default {
+    background-color: #f3f4f6; // Tom de cinza-claro
+    
+   
+   .h6 { 
+      color: #374151 !important; 
+      font-weight: 700; // Negrito SÓ AQUI
+    }
+
+    .small, p {
+      color: #374151 !important; 
+    }
+    .h3 { color: #f97316 !important; } // Números em laranja
+
+    // Efeito de HOVER: Ficar azul-claro
+    &:hover {
+      background-color: #e0e7ff; // Tom de azul-claro (do Figma)
+      
+      // Muda as cores do texto para o "modo azul"
+      .h6, .small, p {
+        color: #3730a3 !important; // Texto azul-escuro
+      }
+      
+    }
+  }
+
+ 
+}
+
 // Botões de dificuldade customizados para Flashcards
 
 .btn-facil {
