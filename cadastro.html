@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> LangUp - Cadastrar Palavra </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LangUp - Cadastrar Palavra</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,159 +14,139 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <link rel="stylesheet" href="assets/css/main.css">
-
 </head>
 
-<body class="app-background" >
+<body class="app-background">
 
- <!--Cabeçalho-->
-    <nav class="navbar navbar-expand-lg bg-white shadow-sm fixed-top d-none d-lg-block py-0">
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm fixed-top d-none d-lg-block py-2">
         <div class="container">
             <a class="navbar-brand" href="dashboard.html">
                 <picture>
-                  <source srcset="images/logo_LangUp.webp" type="image/webp">
-
-                  <source srcset="images/logo_LangUp.png" type="image/png">
-
-                  <img src="images/logo_LangUp.png" alt="Logo LangUp" class="header-logo img-fluid">
+                    <source srcset="images/logo_LangUp.webp" type="image/webp">
+                    <source srcset="images/logo_LangUp.png" type="image/png">
+                    <img src="images/logo_LangUp.png" alt="Logo LangUp" class="header-logo img-fluid">
                 </picture>
             </a>
 
-    <div class="collapse navbar-collapse" id="navbarNavDesktop">
-        <ul class="navbar-nav mx-auto">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="dashboard.html">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Minhas Palavras</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="flashcards.html">Flashcards</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Progresso</a>
-          </li>
-        </ul>
-        <a href="perfil.html">
-            <img src="https://i.pravatar.cc/40?img=3" alt="Avatar do usuário" class="rounded-circle">
-        </a>
-      </div>
-    </div>
-  </nav>   
-
-   <!--Headeer Mobile-->
- <header class="container d-lg-none bg-white shadow-sm fixed-top">
-  <div class="d-flex align-items-center py-3">
-    <div class="col-2">
-      <a href="dashboard.html" class="text-decoration-none text-body-secondary">
-          <i class="bi bi-arrow-left fs-4"></i>
-      </a>
-    </div>
-    <div class="col-8 text-center">
-      <h1 class="h4 fw-bold mb-0">Crie seu flashcard</h1>
-    </div>
-    <div class="col-2"></div>
-  </div>
-</header>
-
-  <main class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-8 col-md-10"> 
-        <form id="form-cadastro">
-          
-          <label for="palavra-desktop" class="form-label fw-bold">Palavra/Frase</label>
-
-            <div class="mb-3 d-none d-lg-flex"> 
-              <input type="text" class="form-control flex-grow-1" id="palavra-desktop" placeholder="Digite a palavra ou frase" required>
-              <button class="btn btn-secondary-custom ms-2 text-nowrap" type="button" id="btn-buscar-desktop">Buscar Definição</button>
+            <div class="collapse navbar-collapse" id="navbarNavDesktop">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Minhas Palavras</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="flashcards.html">Flashcards</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Progresso</a>
+                    </li>
+                </ul>
+                <a href="perfil.html">
+                    <img src="https://i.pravatar.cc/40?img=3" alt="Avatar do usuário" class="rounded-circle">
+                </a>
             </div>
+        </div>
+    </nav>   
 
-          <input type="text" class="form-control d-lg-none mb-3" id="palavra-mobile" placeholder="Digite a palavra ou frase" required>
+    <header class="container d-lg-none bg-white shadow-sm fixed-top">
+        <div class="d-flex align-items-center py-3">
+            <div class="col-2">
+                <a href="dashboard.html" class="text-decoration-none text-body-secondary">
+                    <i class="bi bi-arrow-left fs-4"></i>
+                </a>
+            </div>
+            <div class="col-8 text-center">
+                <h1 class="h4 fw-bold mb-0">Cadastrar Palavra</h1>
+            </div>
+            <div class="col-2"></div>
+        </div>
+    </header>
 
-          <div class="mb-3">
-            <label for="traducao" class="form-label fw-bold">Tradução</label>
-            <input type="text" class="form-control" id="traducao" placeholder="Ex: Olá" required>
-          </div>
+    <main class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10"> 
+                
+                <form id="form-cadastro">
+                    
+                    <label for="palavra-desktop" class="form-label fw-bold">Palavra/Frase</label>
 
-          <div class="mb-3">
-            <label for="idioma" class="form-label fw-bold">Idioma</label>
-            <select class="form-select" id="idioma" required>
-              <option value="" disabled selected>Selecione o idioma</option>
-              <option value="ingles">Inglês</option>
-              <option value="espanhol">Espanhol</option>
-              <option value="frances">Francês</option>
-              </select>
-          </div>
+                    <div class="mb-3 d-none d-lg-flex"> 
+                        <input type="text" class="form-control flex-grow-1" id="palavra-desktop" placeholder="Digite a palavra ou frase"  autofocus>
+                        <button class="btn btn-secondary-custom ms-2 text-nowrap" type="button" id="btn-buscar-desktop">Buscar Definição</button>
+                    </div>
 
-          <div class="d-grid d-lg-none mb-3">
-              <button class="btn btn-secondary-custom ms" type="button" id="btn-buscar-mobile">Buscar Definição</button>
-          </div>
+                    <input type="text" class="form-control d-lg-none mb-3" id="palavra-mobile" placeholder="Digite a palavra ou frase"  autofocus>
 
-          <div class="mb-3">
-            <label for="definicao" class="form-label fw-bold">Definição (opcional)</label>
-            <textarea class="form-control" id="definicao" rows="3" placeholder="Ex: Uma saudação em inglês"></textarea>
-          </div>
+                    <div class="mb-3">
+                        <label for="traducao" class="form-label fw-bold">Tradução</label>
+                        <input type="text" class="form-control" id="traducao" placeholder="Ex: Olá" required>
+                    </div>
 
-          <div class="mb-3">
-            <label for="exemplo" class="form-label fw-bold">Exemplo (opcional)</booltextarea>
-            <input type="text" class="form-control" id="exemplo" placeholder="Ex: Hello, how are you?">
-          </div>
+                    <div class="mb-3">
+                        <label for="idioma" class="form-label fw-bold">Idioma</label>
+                        <select class="form-select" id="idioma" required>
+                            <option value="" disabled selected>Selecione o idioma</option>
+                            <option value="ingles">Inglês</option>
+                            <option value="espanhol">Espanhol</option>
+                            <option value="frances">Francês</option>
+                        </select>
+                    </div>
 
-          <div class="text-end">
-            <button type="submit" class="btn btn-primary fw-bold text-uppercase">Salvar Palavra</button>
-          </div>
+                    <div class="d-grid d-lg-none mb-3">
+                        <button class="btn btn-secondary-custom" type="button" id="btn-buscar-mobile">Buscar Definição</button>
+                    </div>
 
-        </form>
+                    <div class="mb-3">
+                        <label for="definicao" class="form-label fw-bold">Definição (opcional)</label>
+                        <textarea class="form-control" id="definicao" rows="3" placeholder="Ex: Uma saudação em inglês"></textarea>
+                    </div>
 
-      </div>
-    </div>
-</main>
+                    <div class="mb-3">
+                        <label for="exemplo" class="form-label fw-bold">Exemplo (opcional)</label>
+                        <input type="text" class="form-control" id="exemplo" placeholder="Ex: Hello, how are you?">
+                    </div>
+
+                    <div class="d-flex justify-content-end gap-2">
+                        <button type="button" class="btn btn-outline-secondary" id="btn-limpar">Limpar</button>
+                        <button type="submit" class="btn btn-primary fw-bold text-uppercase">Salvar Palavra</button>
+                    </div>
+
+                </form>
+
+                <div id="resultado" class="mt-5"> </div>
+
+                    
+            </div>
+        </div>
+    </main>
     
-  <!--Menu Mobile-->
-  <nav class="navbar navbar-expand bg-white shadow-lg fixed-bottom rounded-top-4 d-lg-none d-none">
-    <div class="container">
-        <ul class="navbar-nav nav-fill w-100">
-            <li class="nav-item">
-                <a href="dashboard.html" class="nav-link d-flex flex-column align-items-center"><i class="bi bi-house-fill fs-4"></i><span class="small">Home</span></a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link text-primary d-flex flex-column align-items-center"><i class="bi bi-card-text fs-4"></i><span class="small">Palavras</span></a>
-            </li>
-            <li class="nav-item">
-                <a href="flashcards.html" class="nav-link d-flex flex-column align-items-center"><i class="bi bi-stack fs-4"></i><span class="small">Flashcards</span></a>
-            </li>
-            <li class="nav-item">
-                <a href="perfil.html" class="nav-link d-flex flex-column align-items-center"><i class="bi bi-person-fill fs-4"></i><span class="small">Perfil</span></a>
-            </li>
-        </ul>
-    </div>
-  </nav>
+    <nav class="navbar navbar-expand bg-white shadow-lg fixed-bottom rounded-top-4 d-lg-none">
+        <div class="container">
+            <ul class="navbar-nav nav-fill w-100">
+                <li class="nav-item">
+                    <a href="dashboard.html" class="nav-link d-flex flex-column align-items-center"><i class="bi bi-house-fill fs-4"></i><span class="small">Home</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-primary d-flex flex-column align-items-center"><i class="bi bi-card-text fs-4"></i><span class="small">Palavras</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="flashcards.html" class="nav-link d-flex flex-column align-items-center"><i class="bi bi-stack fs-4"></i><span class="small">Flashcards</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="perfil.html" class="nav-link d-flex flex-column align-items-center"><i class="bi bi-person-fill fs-4"></i><span class="small">Perfil</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
-   <nav class="navbar navbar-expand bg-white shadow-lg fixed-bottom rounded-top-4 d-lg-none">
-    <div class="container">
-        <ul class="navbar-nav nav-fill w-100">
-            <li class="nav-item">
-                <a href="dashboard.html" class="nav-link text-primary d-flex flex-column align-items-center"><i class="bi bi-house-fill fs-4"></i><span class="small">Home</span></a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link d-flex flex-column align-items-center"><i class="bi bi-card-text fs-4"></i><span class="small">Palavras</span></a>
-            </li>
-            <li class="nav-item">
-                <a href="flashcards.html" class="nav-link d-flex flex-column align-items-center"><i class="bi bi-stack fs-4"></i><span class="small">Flashcards</span></a>
-            </li>
-            <li class="nav-item">
-                <a href="perfil.html" class="nav-link d-flex flex-column align-items-center"><i class="bi bi-person-fill fs-4"></i><span class="small">Perfil</span></a>
-            </li>
-        </ul>
-    </div>
-  </nav>
+    <footer class="container text-center text-body-secondary mt-5 py-3 d-none d-lg-block">
+        2025 LangUp. Todos os direitos reservados.
+    </footer>
 
-  <footer class="container text-center text-body-secondary mt-5 py-3 d-none d-lg-block">
-    2024 LangUp. Todos os direitos reservados.
-  </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/cadastro.js"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="js/cadastro.js"></script>
- 
 </body>
 </html>
