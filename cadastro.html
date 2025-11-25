@@ -70,18 +70,23 @@
                 
                 <form id="form-cadastro">
                     
-                    <label for="palavra-desktop" class="form-label fw-bold">Palavra/Frase</label>
+                    <label for="palavra" class="form-label fw-bold">Palavra/Frase</label>
 
-                    <div class="mb-3 d-none d-lg-flex"> 
-                        <input type="text" class="form-control flex-grow-1" id="palavra-desktop" placeholder="Digite a palavra ou frase"  autofocus>
-                        <button class="btn btn-secondary-custom ms-2 text-nowrap" type="button" id="btn-buscar-desktop">Buscar Definição</button>
-                    </div>
+                        <div class="d-flex flex-column flex-lg-row gap-2 mb-3">
+                            <input type="text" class="form-control" id="palavra" placeholder="Digite a palavra ou frase" 
+                                minlength="2" maxlength="50" required autofocus>
 
-                    <input type="text" class="form-control d-lg-none mb-3" id="palavra-mobile" placeholder="Digite a palavra ou frase"  autofocus>
+                            <button class="btn btn-secondary-custom text-nowrap" type="button" id="btn-buscar">
+                                Buscar Definição
+                            </button>
+                        </div>
 
                     <div class="mb-3">
                         <label for="traducao" class="form-label fw-bold">Tradução</label>
-                        <input type="text" class="form-control" id="traducao" placeholder="Ex: Olá" required>
+                        <input type="text" class="form-control" id="traducao" placeholder="Ex: Olá" required
+                        minlength="2" maxlength="50"
+                        pattern="[A-Za-zÀ-ÿ\s]+"
+                        title="A tradução deve conter apenas letras e espaços.">
                     </div>
 
                     <div class="mb-3">
@@ -94,18 +99,16 @@
                         </select>
                     </div>
 
-                    <div class="d-grid d-lg-none mb-3">
-                        <button class="btn btn-secondary-custom" type="button" id="btn-buscar-mobile">Buscar Definição</button>
-                    </div>
+                  
 
                     <div class="mb-3">
                         <label for="definicao" class="form-label fw-bold">Definição (opcional)</label>
-                        <textarea class="form-control" id="definicao" rows="3" placeholder="Ex: Uma saudação em inglês"></textarea>
+                        <textarea class="form-control" id="definicao" rows="3" placeholder="Ex: Uma saudação em inglês" maxlength="250"></textarea>
                     </div>
 
                     <div class="mb-3">
                         <label for="exemplo" class="form-label fw-bold">Exemplo (opcional)</label>
-                        <input type="text" class="form-control" id="exemplo" placeholder="Ex: Hello, how are you?">
+                        <input type="text" class="form-control" id="exemplo" placeholder="Ex: Hello, how are you?" maxlength="200">
                     </div>
 
                     <div class="d-flex justify-content-end gap-2">

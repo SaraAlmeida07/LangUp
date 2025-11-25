@@ -1,5 +1,6 @@
 // Aguarda o HTML carregar completamente antes de rodar o script
 document.addEventListener('DOMContentLoaded', function() {
+    
     class Palavra {
         constructor(palavra, traducao, idioma, definicao, exemplo) {
             this.palavra = palavra;
@@ -10,11 +11,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    //  pega o objeto criado e mostra na tela
+    // Pega o objeto criado e mostra na tela
     function exibirDados(palavraObjeto) {
         const divResultado = document.querySelector('#resultado');
 
-        // Injeta o HTML com os dados dentro da div vazia
         divResultado.innerHTML = `
             <div class="card shadow-sm border-0 rounded-4 p-4 bg-light">
                 <h3 class="fw-bold text-primary mb-3">Dados Cadastrados:</h3>
@@ -27,44 +27,57 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
     }
 
-    // Botão Limpar
+    // --- 1. Lógica do Botão Limpar ---
     const btnLimpar = document.querySelector('#btn-limpar');
 
     btnLimpar.addEventListener('click', function() {
         const campos = document.querySelectorAll('#form-cadastro input, #form-cadastro textarea, #form-cadastro select');
 
-        //Limpando a Div de resultado
         campos.forEach(campo => {
             campo.value = '';
         });
 
         document.querySelector('#resultado').innerHTML = '';
+        document.getElementById('palavra').focus();
+    }); // <--- FALTAVA FECHAR AQUI
 
-        const inputDesktop = document.getElementById('palavra-desktop');
-        const inputMobile = document.getElementById('palavra-mobile');
+    // --- 2. Validação Personalizada (Tradução) ---
+    const inputTraducao = document.getElementById('traducao');
 
-        // Se o desktop estiver visível (offsetParent não é null), foca nele, senão foca no mobile
-        if(inputDesktop.offsetParent !== null) {
-             inputDesktop.focus();
+    inputTraducao.addEventListener('invalid', function() {
+        if (inputTraducao.validity.patternMismatch) {
+            inputTraducao.setCustomValidity("Poxa, a tradução não pode ter números! Use apenas letras.");
+        } else if (inputTraducao.validity.valueMissing) {
+            inputTraducao.setCustomValidity("Não esqueça de preencher a tradução!");
         } else {
-             inputMobile.focus();
+            inputTraducao.setCustomValidity(""); 
         }
     });
 
-    // --- PASSO 3: EVENTO DE ENVIO (SALVAR) ---
+    inputTraducao.addEventListener('input', function() {
+        inputTraducao.setCustomValidity("");
+    });
+
+
+    // --- 3. Evento de Envio (Salvar) ---
     const formCadastro = document.querySelector('#form-cadastro');
 
     formCadastro.addEventListener('submit', function(event) {
         event.preventDefault(); // Impede a página de recarregar
 
-        // Captura os valores (Lógica inteligente para pegar o input visível)
-        const palavraInput = document.getElementById('palavra-desktop').value || document.getElementById('palavra-mobile').value;
+        if (!formCadastro.checkValidity()) {
+            alert("Por favor, corrija os campos destacados antes de enviar.");
+            return; // Sai da função e não salva nada
+        }
+
+        // Captura os valores
+        const palavraInput = document.getElementById('palavra').value;
         const traducaoInput = document.getElementById('traducao').value;
         const idiomaInput = document.getElementById('idioma').value;
         const definicaoInput = document.getElementById('definicao').value;
         const exemploInput = document.getElementById('exemplo').value;
 
-        // Cria o objeto usando a Classe
+        // Cria o objeto
         const novaPalavra = new Palavra(
             palavraInput, 
             traducaoInput, 
@@ -75,8 +88,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
         exibirDados(novaPalavra);
     });
-});
 
-
-
-
+}); // Fecha o DOMContentLoaded
