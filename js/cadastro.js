@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         document.querySelector('#resultado').innerHTML = '';
         document.getElementById('palavra').focus();
-    }); // <--- FALTAVA FECHAR AQUI
+    }); 
 
     // --- 2. Validação Personalizada (Tradução) ---
     const inputTraducao = document.getElementById('traducao');
@@ -86,7 +86,21 @@ document.addEventListener('DOMContentLoaded', function() {
             exemploInput
         );
 
-        exibirDados(novaPalavra);
+       console.log("Objeto criado:", novaPalavra); // só para ver no F12
+    
+        // SALVAR NO LOCALSTORAGE --
+
+        const listaDePalavras = JSON.parse(localStorage.getItem('bd_palavras')) || [];
+
+        listaDePalavras.push(novaPalavra);
+
+        localStorage.setItem('bd_palavras', JSON.stringify(listaDePalavras));
+
+        alert('Palavra salva com sucesso!');
+
+        document.querySelector('#form-cadastro').reset();
+
+        window.location.href = 'palavras.html';
     });
 
 }); // Fecha o DOMContentLoaded
