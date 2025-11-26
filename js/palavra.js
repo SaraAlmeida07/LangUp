@@ -20,6 +20,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const dados = localStorage.getItem('bd_palavras');
         const palavrasSalvas = dados ? JSON.parse(dados) : [];
 
+        //  JQUERY (esconde a lista)
+        $('#lista-palavras').hide();
+
         // 2. Verificar se está vazio
         if (palavrasSalvas.length === 0) {
             containerLista.innerHTML = `
@@ -29,6 +32,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     <a href="cadastro.html" class="btn btn-primary mt-2">Cadastrar a primeira</a>
                 </div>
             `;
+           
+            $('#lista-palavras').fadeIn(800);
             return;
         }
 
@@ -59,6 +64,8 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
             
             containerLista.innerHTML += cardHTML;
+
+            $('#lista-palavras').fadeIn(800);
         });
     }
 

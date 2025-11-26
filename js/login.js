@@ -1,35 +1,45 @@
-// Aguarda o HTML carregar
 document.addEventListener('DOMContentLoaded', function() {
 
-    
-    
-    // 1. Selecionar o formulário
+    // 1. FUNÇÃO DE CRIPTOGRAFIA (HASH)
+    async function hashSenha(senha) {
+        const encoder = new TextEncoder();
+        const data = encoder.encode(senha);
+        const hash = await crypto.subtle.digest('SHA-256', data);
+        return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
     const loginForm = document.getElementById('login-form');
 
-    // 2. Adicionar evento de envio
-    loginForm.addEventListener('submit', function(event) {
-        
-        // 3. Previne o recarregamento da página
+    loginForm.addEventListener('submit', async function(event) {
         event.preventDefault();
 
-        
-        
-        // Tenta buscar se existe um usuário cadastrado no LocalStorage (vindo do signup.html)
-        const usuarioCadastradoJSON = localStorage.getItem('usuarioCadastrado');
-        
-        let nomeParaLogin = 'User'; // Nome padrão caso ninguém tenha se cadastrado ainda
+        const emailDigitado = document.getElementById('email').value;
+        const senhaDigitada = document.getElementById('senha').value;
 
-        if (usuarioCadastradoJSON) {
-            // Se achou alguém, usa o nome dessa pessoa!
-            const usuarioObj = JSON.parse(usuarioCadastradoJSON);
-            nomeParaLogin = usuarioObj.nome;
+        // 2. Busca o usuário no banco
+        const usuarioCadastradoJSON = localStorage.getItem('usuarioCadastrado');
+
+        if (!usuarioCadastradoJSON) {
+            alert("Usuário não encontrado. Por favor, cadastre-se.");
+            return;
         }
 
-        // 4. Salva na "Sessão" (quem está logado agora)
-        localStorage.setItem('usuarioLogado', nomeParaLogin);
+        const usuarioSalvo = JSON.parse(usuarioCadastradoJSON);
 
-        // 5. Feedback e Redirecionamento
-        alert(`Login realizado com sucesso! Bem-vindo(a), ${nomeParaLogin}!`);
-        window.location.href = 'dashboard.html';
+        // 3. Criptografa a senha digitada para comparar
+        const hashDaSenhaDigitada = await hashSenha(senhaDigitada);
+
+        // 4. COMPARAÇÃO SEGURA
+        if (emailDigitado === usuarioSalvo.email && hashDaSenhaDigitada === usuarioSalvo.senha) {
+            
+            // Sucesso
+            localStorage.setItem('usuarioLogado', usuarioSalvo.nome);
+            alert(`Login realizado com sucesso! Bem-vindo(a), ${usuarioSalvo.nome}!`);
+            window.location.href = 'dashboard.html';
+
+        } else {
+            // Erro
+            alert("Login ou senha incorretos.");
+        }
     });
 });
