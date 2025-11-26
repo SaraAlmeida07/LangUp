@@ -1,25 +1,35 @@
-// Aguarda o HTML da página ser completamente carregado antes de executar o script
+// Aguarda o HTML carregar
 document.addEventListener('DOMContentLoaded', function() {
 
-    // 1. Captura o formulário de login pelo seu ID
+    
+    
+    // 1. Selecionar o formulário
     const loginForm = document.getElementById('login-form');
 
-    // 2. Adiciona um "escutador de eventos" que fica esperando o formulário ser enviado
+    // 2. Adicionar evento de envio
     loginForm.addEventListener('submit', function(event) {
         
-        // 3. Impede o comportamento padrão do formulário, que é recarregar a página
+        // 3. Previne o recarregamento da página
         event.preventDefault();
 
-        // --- SIMULAÇÃO DE LOGIN ---
         
-        // 4. Guarda uma informação na "gaveta" do navegador (localStorage)
-        // para que outras páginas saibam que o usuário está logado.
-        localStorage.setItem('usuarioLogado', 'Sofia');
+        
+        // Tenta buscar se existe um usuário cadastrado no LocalStorage (vindo do signup.html)
+        const usuarioCadastradoJSON = localStorage.getItem('usuarioCadastrado');
+        
+        let nomeParaLogin = 'User'; // Nome padrão caso ninguém tenha se cadastrado ainda
 
-        // 5. Exibe um alerta de sucesso
-        alert('Login realizado com sucesso! Redirecionando para a Dashboard...');
+        if (usuarioCadastradoJSON) {
+            // Se achou alguém, usa o nome dessa pessoa!
+            const usuarioObj = JSON.parse(usuarioCadastradoJSON);
+            nomeParaLogin = usuarioObj.nome;
+        }
 
-        // 6. Redireciona o usuário para a página principal do aplicativo
+        // 4. Salva na "Sessão" (quem está logado agora)
+        localStorage.setItem('usuarioLogado', nomeParaLogin);
+
+        // 5. Feedback e Redirecionamento
+        alert(`Login realizado com sucesso! Bem-vindo(a), ${nomeParaLogin}!`);
         window.location.href = 'dashboard.html';
     });
 });
