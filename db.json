@@ -1,16 +1,31 @@
 {
   "palavras": [
     {
-      "id": 1,
-      "palavra": "Saudade",
-      "traducao": "Longing",
-      "definicao": "A deep emotional state of nostalgic or melancholic longing...",
-      "exemplo": "A saudade que sinto dos meus avós é imensa.",
+      "id": "1",
+      "palavra": "Bonjour",
+      "traducao": "Bom dia",
+      "idioma": "Francês",
+      "definicao": "Saudação utilizada durante o dia.",
+      "exemplo": "Bonjour, ça va?",
       "dificuldade": "medio"
+    },
+    {
+      "id": "2",
+      "palavra": "Hello",
+      "traducao": "Olá",
+      "idioma": "Inglês",
+      "definicao": "A greeting or expression of goodwill.",
+      "exemplo": "Hello, my friend!",
+      "dificuldade": "facil"
     }
   ],
-  "usuario": {
-    "nome": "Sofia",
-    "email": "sofia@email.com"
-  }
+  "usuarios": [
+    {
+      "id": "1",
+      "nome": "Sofia",
+      "email": "sofia@email.com",
+      "telefone": "41999999999",
+      "senha": "123"
+    }
+  ]
 }

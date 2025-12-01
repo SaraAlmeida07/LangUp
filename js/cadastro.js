@@ -1,6 +1,6 @@
-// Aguarda o HTML carregar completamente antes de rodar o script
 document.addEventListener('DOMContentLoaded', function() {
     
+    // CLASSE (MOLDE)
     class Palavra {
         constructor(palavra, traducao, idioma, definicao, exemplo) {
             this.palavra = palavra;
@@ -8,99 +8,72 @@ document.addEventListener('DOMContentLoaded', function() {
             this.idioma = idioma;
             this.definicao = definicao;
             this.exemplo = exemplo;
+            
         }
     }
 
-    // Pega o objeto criado e mostra na tela
-    function exibirDados(palavraObjeto) {
-        const divResultado = document.querySelector('#resultado');
-
-        divResultado.innerHTML = `
-            <div class="card shadow-sm border-0 rounded-4 p-4 bg-light">
-                <h3 class="fw-bold text-primary mb-3">Dados Cadastrados:</h3>
-                <p><strong>Palavra:</strong> ${palavraObjeto.palavra}</p>
-                <p><strong>Tradução:</strong> ${palavraObjeto.traducao}</p>
-                <p><strong>Idioma:</strong> ${palavraObjeto.idioma}</p>
-                <p><strong>Definição:</strong> ${palavraObjeto.definicao || 'N/A'}</p>
-                <p><strong>Exemplo:</strong> ${palavraObjeto.exemplo || 'N/A'}</p>
-            </div>
-        `;
-    }
-
-    // --- 1. Lógica do Botão Limpar ---
+    // --- LÓGICA DO BOTÃO LIMPAR ---
     const btnLimpar = document.querySelector('#btn-limpar');
-
     btnLimpar.addEventListener('click', function() {
-        const campos = document.querySelectorAll('#form-cadastro input, #form-cadastro textarea, #form-cadastro select');
-
-        campos.forEach(campo => {
-            campo.value = '';
-        });
-
-        document.querySelector('#resultado').innerHTML = '';
+        document.querySelectorAll('#form-cadastro input, #form-cadastro textarea, #form-cadastro select')
+            .forEach(campo => campo.value = '');
         document.getElementById('palavra').focus();
-    }); 
+    });
 
-    // --- 2. Validação Personalizada (Tradução) ---
+    // --- VALIDAÇÃO 
     const inputTraducao = document.getElementById('traducao');
-
-    inputTraducao.addEventListener('invalid', function() {
+    inputTraducao.addEventListener('invalid', () => {
         if (inputTraducao.validity.patternMismatch) {
-            inputTraducao.setCustomValidity("Poxa, a tradução não pode ter números! Use apenas letras.");
-        } else if (inputTraducao.validity.valueMissing) {
-            inputTraducao.setCustomValidity("Não esqueça de preencher a tradução!");
+            inputTraducao.setCustomValidity("A tradução não pode ter números!");
         } else {
             inputTraducao.setCustomValidity(""); 
         }
     });
-
-    inputTraducao.addEventListener('input', function() {
-        inputTraducao.setCustomValidity("");
-    });
+    inputTraducao.addEventListener('input', () => inputTraducao.setCustomValidity(""));
 
 
-    // --- 3. Evento de Envio (Salvar) ---
+    // --- EVENTO DE ENVIO 
     const formCadastro = document.querySelector('#form-cadastro');
 
-    formCadastro.addEventListener('submit', function(event) {
-        event.preventDefault(); // Impede a página de recarregar
+    formCadastro.addEventListener('submit', async function(event) { 
+        event.preventDefault();
 
         if (!formCadastro.checkValidity()) {
-            alert("Por favor, corrija os campos destacados antes de enviar.");
-            return; // Sai da função e não salva nada
+            alert("Por favor, corrija os erros antes de salvar.");
+            return;
         }
 
-        // Captura os valores
-        const palavraInput = document.getElementById('palavra').value;
-        const traducaoInput = document.getElementById('traducao').value;
-        const idiomaInput = document.getElementById('idioma').value;
-        const definicaoInput = document.getElementById('definicao').value;
-        const exemploInput = document.getElementById('exemplo').value;
-
-        // Cria o objeto
+        // 1. Captura os valores
         const novaPalavra = new Palavra(
-            palavraInput, 
-            traducaoInput, 
-            idiomaInput, 
-            definicaoInput, 
-            exemploInput
+            document.getElementById('palavra').value,
+            document.getElementById('traducao').value,
+            document.getElementById('idioma').value,
+            document.getElementById('definicao').value,
+            document.getElementById('exemplo').value
         );
 
-       console.log("Objeto criado:", novaPalavra); // só para ver no F12
-    
-        // SALVAR NO LOCALSTORAGE --
+        // 2. ENVIAR PARA O JSON SERVER 
+        try {
+            const resposta = await fetch('http://localhost:3000/palavras', {
+                method: 'POST', // Método para CRIAR
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(novaPalavra) // Transforma o objeto em texto para enviar
+            });
 
-        const listaDePalavras = JSON.parse(localStorage.getItem('bd_palavras')) || [];
+            if (resposta.ok) {
+                alert('Palavra salva com sucesso no Servidor!');
+                formCadastro.reset();
+                window.location.href = 'palavras.html'; // Redireciona para a lista
+            } else {
+                alert('Erro ao salvar no servidor.');
+                console.error('Erro na API:', resposta.status);
+            }
 
-        listaDePalavras.push(novaPalavra);
-
-        localStorage.setItem('bd_palavras', JSON.stringify(listaDePalavras));
-
-        alert('Palavra salva com sucesso!');
-
-        document.querySelector('#form-cadastro').reset();
-
-        window.location.href = 'palavras.html';
+        } catch (erro) {
+            console.error('Erro de conexão:', erro);
+            alert('Não foi possível conectar ao servidor. Verifique se o json-server está rodando.');
+        }
     });
-
-}); // Fecha o DOMContentLoaded
+});
