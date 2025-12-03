@@ -76,13 +76,17 @@
                     
                     <label for="palavra" class="form-label fw-bold">Palavra/Frase</label>
 
-                        <div class="d-flex flex-column flex-lg-row gap-2 mb-3">
-                            <input type="text" class="form-control" id="palavra" placeholder="Digite a palavra ou frase" 
-                                minlength="2" maxlength="50" required autofocus>
+                        <div class="mb-3 d-none d-lg-flex"> 
+                            <input type="text" class="form-control flex-grow-1" id="palavra-desktop" placeholder="Digite a palavra ou frase" minlength="2" maxlength="50" required autofocus>
+                            <button class="btn btn-secondary-custom ms-2 text-nowrap" type="button" id="btn-buscar-api-desktop">Buscar Definição</button>
+                        </div>
 
-                            <button class="btn btn-secondary-custom text-nowrap" type="button" id="btn-buscar">
-                                Buscar Definição
-                            </button>
+                        <div class="d-lg-none mb-3">
+                            <input type="text" class="form-control mb-2" id="palavra-mobile" placeholder="Digite a palavra ou frase" minlength="2" maxlength="50" required autofocus>
+                            
+                            <div class="d-grid">
+                                <button class="btn btn-secondary-custom" type="button" id="btn-buscar-api-mobile">Buscar Definição</button>
+                            </div>
                         </div>
 
                     <div class="mb-3">

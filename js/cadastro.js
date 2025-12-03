@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     
-    // CLASSE (MOLDE)
+    // 1. CLASSE (MOLDE)
     class Palavra {
         constructor(palavra, traducao, idioma, definicao, exemplo) {
             this.palavra = palavra;
@@ -8,64 +8,123 @@ document.addEventListener('DOMContentLoaded', function() {
             this.idioma = idioma;
             this.definicao = definicao;
             this.exemplo = exemplo;
-            
         }
     }
 
-    // --- LÓGICA DO BOTÃO LIMPAR ---
+    // 2. LÓGICA DO BOTÃO LIMPAR
     const btnLimpar = document.querySelector('#btn-limpar');
-    btnLimpar.addEventListener('click', function() {
-        document.querySelectorAll('#form-cadastro input, #form-cadastro textarea, #form-cadastro select')
-            .forEach(campo => campo.value = '');
-        document.getElementById('palavra').focus();
-    });
+    if (btnLimpar) {
+        btnLimpar.addEventListener('click', function() {
+            document.querySelectorAll('#form-cadastro input, #form-cadastro textarea, #form-cadastro select')
+                .forEach(campo => campo.value = '');
+            
+            // Foca no campo que estiver visível
+            const pDesk = document.getElementById('palavra-desktop');
+            const pMob = document.getElementById('palavra-mobile');
+            if (pDesk && pDesk.offsetParent !== null) pDesk.focus();
+            else if (pMob) pMob.focus();
+        });
+    }
 
-  
-    inputTraducao.addEventListener('input', () => inputTraducao.setCustomValidity(""));
+    // 3. FUNÇÃO DA API (BUSCAR DEFINIÇÃO)
+    async function buscarDefinicao() {
+        // Captura o valor do campo visível
+        const valDesktop = document.getElementById('palavra-desktop').value;
+        const valMobile = document.getElementById('palavra-mobile').value;
+        const palavra = (valDesktop || valMobile).trim();
+
+        const idiomaSelecionado = document.getElementById('idioma').value;
+
+        if (!palavra) {
+            alert("Por favor, digite uma palavra para buscar.");
+            return;
+        }
+
+        if (idiomaSelecionado !== 'ingles') {
+            alert("⚠️ Nesta versão, a busca automática está disponível apenas para Inglês.");
+            return;
+        }
+
+        // Feedback visual nos botões
+        const botoesBusca = document.querySelectorAll('#btn-buscar-api-desktop, #btn-buscar-api-mobile');
+        botoesBusca.forEach(btn => btn.textContent = "Buscando...");
+
+        try {
+            const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${palavra}`);
+            
+            if (!response.ok) {
+                throw new Error('Palavra não encontrada');
+            }
+
+            const dados = await response.json();
+
+            // Preenche a Definição
+            const definicaoEncontrada = dados[0].meanings[0].definitions[0].definition;
+            document.getElementById('definicao').value = definicaoEncontrada;
+
+            // Preenche o Exemplo (se houver)
+            if(dados[0].meanings[0].definitions[0].example) {
+                document.getElementById('exemplo').value = dados[0].meanings[0].definitions[0].example;
+            }
+
+        } catch (erro) {
+            console.error(erro);
+            alert("Não encontramos uma definição para esta palavra.");
+        } finally {
+            botoesBusca.forEach(btn => btn.textContent = "Buscar Definição");
+        }
+    }
+
+    // 4. CONECTAR BOTÕES DE BUSCA
+    const btnBuscarDesktop = document.getElementById('btn-buscar-api-desktop');
+    if (btnBuscarDesktop) btnBuscarDesktop.addEventListener('click', buscarDefinicao);
+
+    const btnBuscarMobile = document.getElementById('btn-buscar-api-mobile');
+    if (btnBuscarMobile) btnBuscarMobile.addEventListener('click', buscarDefinicao);
 
 
-    // --- EVENTO DE ENVIO 
+    // 5. EVENTO DE SALVAR (SUBMIT)
     const formCadastro = document.querySelector('#form-cadastro');
 
     formCadastro.addEventListener('submit', async function(event) { 
         event.preventDefault();
 
         if (!formCadastro.checkValidity()) {
-            alert("Por favor, corrija os erros antes de salvar.");
+            alert("Por favor, preencha os campos obrigatórios.");
             return;
         }
 
-        // 1. Captura os valores
+        // Captura inteligente dos campos de palavra
+        const valDesktop = document.getElementById('palavra-desktop').value;
+        const valMobile = document.getElementById('palavra-mobile').value;
+        const palavraFinal = (valDesktop || valMobile).trim();
+
         const novaPalavra = new Palavra(
-            document.getElementById('palavra').value,
+            palavraFinal,
             document.getElementById('traducao').value,
             document.getElementById('idioma').value,
             document.getElementById('definicao').value,
             document.getElementById('exemplo').value
         );
 
-        // 2. ENVIAR PARA O JSON SERVER 
         try {
             const resposta = await fetch('http://localhost:3000/palavras', {
-                method: 'POST', // Método para CRIAR
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(novaPalavra) // Transforma o objeto em texto para enviar
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(novaPalavra)
             });
 
             if (resposta.ok) {
-                alert('Palavra salva com sucesso no Servidor!');
+                alert('Palavra salva com sucesso!');
                 formCadastro.reset();
-                window.location.href = 'palavras.html'; // Redireciona para a lista
+                window.location.href = 'palavras.html';
             } else {
                 alert('Erro ao salvar no servidor.');
-                console.error('Erro na API:', resposta.status);
             }
 
         } catch (erro) {
-            console.error('Erro de conexão:', erro);
-            alert('Não foi possível conectar ao servidor. Verifique se o json-server está rodando.');
+            console.error('Erro:', erro);
+            alert('Erro de conexão. Verifique o json-server.');
         }
     });
 });
