@@ -20,15 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('palavra').focus();
     });
 
-    // --- VALIDAÇÃO 
-    const inputTraducao = document.getElementById('traducao');
-    inputTraducao.addEventListener('invalid', () => {
-        if (inputTraducao.validity.patternMismatch) {
-            inputTraducao.setCustomValidity("A tradução não pode ter números!");
-        } else {
-            inputTraducao.setCustomValidity(""); 
-        }
-    });
+  
     inputTraducao.addEventListener('input', () => inputTraducao.setCustomValidity(""));
 
 

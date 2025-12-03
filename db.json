@@ -26,6 +26,33 @@
       "email": "sofia@email.com",
       "telefone": "41999999999",
       "senha": "123"
+    },
+   
+    
+    {
+      "id": "8255",
+      "nome": "Alice",
+      "email": "alice@gmail.com",
+      "telefone": "(42) 98855-4849",
+      "senha": "185ce8fc660c5607c09afb444d81f918300a1fc7737d780e4a6c0ed5871c6dd6"
+    },
+   
+  
+    {
+      "id": "61e7",
+      "nome": "ale",
+      "email": "ale@gmail.com",
+      "telefone": "(42) 98855-4849",
+      "senha": "afb47e00531153e93808589e43d02c11f6398c5bc877f7924cebca8211c8dd18"
+    },
+   
+   
+    {
+      "id": "7c0e",
+      "nome": "Alexander",
+      "email": "alexander@gmail.com",
+      "telefone": "(42) 98855-4849",
+      "senha": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92"
     }
   ]
 }

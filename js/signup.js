@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    // 1. MÁSCARA TELEFONE
+    // 1. MÁSCARA
     $('#telefone').mask('(00) 00000-0000');
 
-    // 2. FUNÇÃO DE CRIPTOGRAFIA (HASH)
+    // 2. FUNÇÃO DE HASH
     async function hashSenha(senha) {
         const encoder = new TextEncoder();
         const data = encoder.encode(senha);
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
     }
 
-    // 3. LÓGICA DE SALVAR
+    // 3. EVENTO DE CADASTRO
     const signupForm = document.getElementById('signup-form');
 
     signupForm.addEventListener('submit', async function(event) {
@@ -22,20 +22,41 @@ document.addEventListener('DOMContentLoaded', function() {
         const telefone = document.getElementById('telefone').value;
         const senhaPura = document.getElementById('senha').value;
         
-        // Gera o hash da senha antes de salvar
+        // Criptografa
         const senhaCriptografada = await hashSenha(senhaPura);
 
-        const usuario = {
+        const novoUsuario = {
             nome: nome,
             email: email,
             telefone: telefone,
-            senha: senhaCriptografada // Salva o código doido, não a senha real
+            senha: senhaCriptografada
         };
 
-        localStorage.setItem('usuarioCadastrado', JSON.stringify(usuario));
-        localStorage.setItem('usuarioLogado', nome); // Já loga direto ao cadastrar
+        try {
+            const resposta = await fetch('http://localhost:3000/usuarios', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(novoUsuario)
+            });
 
-        alert('Conta criada com sucesso! Bem-vindo(a), ' + nome + '!');
-        window.location.href = 'dashboard.html';
+            if (resposta.ok) {
+                
+                alert('Conta criada com sucesso! Bem-vindo(a), ' + nome + '!');
+                
+                localStorage.setItem('usuarioLogado', nome);
+                
+                
+                window.location.href = './dashbord.html';
+                
+            } else {
+                alert('Erro ao criar conta. Tente novamente.');
+            }
+
+        } catch (erro) {
+            console.error(erro);
+            alert('Erro de conexão com o servidor.');
+        }
     });
 });
