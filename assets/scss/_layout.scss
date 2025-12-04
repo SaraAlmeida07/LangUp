@@ -1,186 +1,182 @@
 // Arquivo: _layout.scss
 @use 'variables'; // Importa as variáveis
 
-@use "sass:color";
+@use 'sass:color';
 
 @use 'mixins';
 
 body.login-background {
-  background-color: variables.$cor-fundo-login; 
-  min-height: 100vh; // Garante que o body ocupe a altura total da tela
-  @include mixins.centralizar-flex;
-
+    background-color: variables.$cor-fundo-login;
+    min-height: 100vh; // Garante que o body ocupe a altura total da tela
+    @include mixins.centralizar-flex;
 }
-  
 
 // Estilo para o botão primário do Bootstrap
 .btn-primary {
-  --bs-btn-bg: #{variables.$cor-primaria};
-  --bs-btn-border-color: #{variables.$cor-primaria};
-  
-  // Exemplo de Aninhamento (Nesting)
+    --bs-btn-bg: #{variables.$cor-primaria};
+    --bs-btn-border-color: #{variables.$cor-primaria};
 
-&:hover {
-  background-color: color.adjust(variables.$cor-primaria, $lightness: -5%);
-  border-color: color.adjust(variables.$cor-primaria, $lightness: -5%);
-}
+    // Exemplo de Aninhamento (Nesting)
+
+    &:hover {
+        background-color: color.adjust(variables.$cor-primaria, $lightness: -5%);
+        border-color: color.adjust(variables.$cor-primaria, $lightness: -5%);
+    }
 }
 
 //  botão customizado, agora com aninhamento
 .btn-secondary-custom {
-  background-color: variables.$cor-secundaria;
-  border-color: variables.$cor-secundaria;
-  color: #fff;.header-logo
-
-  &:hover {
-    background-color: color.adjust(variables.$cor-secundaria, $lightness: -5%);
-    border-color: color.adjust(variables.$cor-secundaria, $lightness: -5%);
-  }
+    background-color: variables.$cor-secundaria;
+    border-color: variables.$cor-secundaria;
+    color: #fff;
+    .header-logo &:hover {
+        background-color: color.adjust(variables.$cor-secundaria, $lightness: -5%);
+        border-color: color.adjust(variables.$cor-secundaria, $lightness: -5%);
+    }
 }
 
 // Classes de fundo para as páginas
 body.login-background {
-  background-color: variables.$cor-fundo-login; 
+    background-color: variables.$cor-fundo-login;
 }
 
 body.app-background {
-  background-color: variables.$cor-fundo-app;
-   // Adiciona espaço para a navbar fixa
+    background-color: variables.$cor-fundo-app;
+    // Adiciona espaço para a navbar fixa
 
-  // Aplica o padding-top APENAS em telas grandes (para o header de desktop)
-   
-    padding-top: 100px; 
-  
+    // Aplica o padding-top APENAS em telas grandes (para o header de desktop)
 
-  // Aplica o padding-bottom APENAS em telas pequenas (para a navbar mobile)
-  @media (max-width: 991.98px) { 
-    padding-bottom: 90px;
-  }
+    padding-top: 100px;
 
+    // Aplica o padding-bottom APENAS em telas pequenas (para a navbar mobile)
+    @media (max-width: 991.98px) {
+        padding-bottom: 90px;
+    }
 }
 
 // Estilo para o logo nos cabeçalhos
 .header-logo {
-  height: 80px;
-  // width: auto;
+    height: 80px;
+    // width: auto;
 }
 
 // Estilo para o Botão de Ação Flutuante
 .fab {
-  width: 60px;
-  height: 60px;
-  bottom: 100px;
-  right: 20px;
-  font-size: 28px;
-  z-index: 100;
+    width: 60px;
+    height: 60px;
+    bottom: 100px;
+    right: 20px;
+    font-size: 28px;
+    z-index: 100;
 }
 
-
 /* 5. Estilos dos Cards da Dashboard             */
-
 
 // Classe base para todos os cards de estatística
 
 .card-stats {
-  // Transição suave para o efeito de hover
-  transition: all 0.2s ease-in-out;
+    // Transição suave para o efeito de hover
+    transition: all 0.2s ease-in-out;
 
-  // Estilo Padrão (Cinza-Claro)
-  &.card-stats-default {
-    background-color: #f3f4f6; // Tom de cinza-claro
-    
-   
-   .h6 { 
-      color: #374151 !important; 
-      font-weight: 700; // Negrito SÓ AQUI
+    // Estilo Padrão (Cinza-Claro)
+    &.card-stats-default {
+        background-color: #f3f4f6; // Tom de cinza-claro
+
+        .h6 {
+            color: #374151 !important;
+            font-weight: 700; // Negrito SÓ AQUI
+        }
+
+        .small,
+        p {
+            color: #374151 !important;
+        }
+        .h3 {
+            color: #f97316 !important;
+        } // Números em laranja
+
+        // Efeito de HOVER: Ficar azul-claro
+        &:hover {
+            background-color: #e0e7ff; // Tom de azul-claro (do Figma)
+
+            // Muda as cores do texto para o "modo azul"
+            .h6,
+            .small,
+            p {
+                color: #3730a3 !important; // Texto azul-escuro
+            }
+        }
     }
-
-    .small, p {
-      color: #374151 !important; 
-    }
-    .h3 { color: #f97316 !important; } // Números em laranja
-
-    // Efeito de HOVER: Ficar azul-claro
-    &:hover {
-      background-color: #e0e7ff; // Tom de azul-claro (do Figma)
-      
-      // Muda as cores do texto para o "modo azul"
-      .h6, .small, p {
-        color: #3730a3 !important; // Texto azul-escuro
-      }
-      
-    }
-  }
-
- 
 }
 
 // Botões de dificuldade customizados para Flashcards
 
 .btn-facil {
-  background-color: #dcfce7 !important; // Verde claro
-  color: #166534 !important; // Verde escuro
-  border-color: #dcfce7 !important;
-  font-weight: 600;
-  &:hover {
-    background-color: #bbf7d0 !important;
-  }
+    background-color: #dcfce7 !important; // Verde claro
+    color: #166534 !important; // Verde escuro
+    border-color: #dcfce7 !important;
+    font-weight: 600;
+    &:hover {
+        background-color: #bbf7d0 !important;
+    }
 }
 
 .btn-medio {
-  background-color: #fef9c3 !important; // Amarelo claro
-  color: #854d0e !important; // Amarelo escuro
-  border-color: #fef9c3 !important;
-  font-weight: 600;
-  &:hover {
-    background-color: #fde047 !important;
-  }
+    background-color: #fef9c3 !important; // Amarelo claro
+    color: #854d0e !important; // Amarelo escuro
+    border-color: #fef9c3 !important;
+    font-weight: 600;
+    &:hover {
+        background-color: #fde047 !important;
+    }
 }
 
 .btn-dificil {
-  background-color: #fee2e2 !important; // Vermelho claro
-  color: #991b1b !important; // Vermelho escuro
-  border-color: #fee2e2 !important;
-  font-weight: 600;
-  &:hover {
-    background-color: #fecaca !important;
-  }
+    background-color: #fee2e2 !important; // Vermelho claro
+    color: #991b1b !important; // Vermelho escuro
+    border-color: #fee2e2 !important;
+    font-weight: 600;
+    &:hover {
+        background-color: #fecaca !important;
+    }
 }
 
 // Utility class for orange text
 .text-laranja {
-  color: variables.$cor-secundaria !important; // $cor-secundaria é o seu laranja
+    color: variables.$cor-secundaria !important; // $cor-secundaria é o seu laranja
 }
 
 /*  Validação de Formulário (Feedback Visual)  */
 
-.form-control, .form-select {
-
-  &:valid {
-    border-color: #198754; // Verde (Sucesso)
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
-    background-repeat: no-repeat;
-    background-position: right calc(0.375em + 0.1875rem) center;
-    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
-  }
-  &:invalid {
-    border-color: #dc3545; // Vermelho (Erro)
-    // Adiciona um ícone de exclamação (padrão do Bootstrap)
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
-    background-repeat: no-repeat;
-    background-position: right calc(0.375em + 0.1875rem) center;
-    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
-  }
+.form-control,
+.form-select {
+    &:valid {
+        border-color: #198754; // Verde (Sucesso)
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right calc(0.375em + 0.1875rem) center;
+        background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+    }
+    &:invalid {
+        border-color: #dc3545; // Vermelho (Erro)
+        // Adiciona um ícone de exclamação (padrão do Bootstrap)
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right calc(0.375em + 0.1875rem) center;
+        background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+    }
 }
 
 // Estilo para os Cards de Vocabulário (Lista)
 .card-vocabulario {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  cursor: pointer; // Mostra a mãozinha para indicar que é interativo
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    cursor: pointer; // Mostra a mãozinha para indicar que é interativo
 
-  &:hover {
-    transform: translateY(-3px); // Levanta um pouquinho
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important; // Sombra mais forte
-    background-color: #fff; // Garante fundo branco
-  }
+    &:hover {
+        transform: translateY(-3px); // Levanta um pouquinho
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important; // Sombra mais forte
+        background-color: #fff; // Garante fundo branco
+    }
 }

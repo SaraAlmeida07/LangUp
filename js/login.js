@@ -1,16 +1,17 @@
-document.addEventListener('DOMContentLoaded', function() {
-
+document.addEventListener('DOMContentLoaded', function () {
     // 1. FUNÇÃO DE HASH
     async function hashSenha(senha) {
         const encoder = new TextEncoder();
         const data = encoder.encode(senha);
         const hash = await crypto.subtle.digest('SHA-256', data);
-        return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
+        return Array.from(new Uint8Array(hash))
+            .map((b) => b.toString(16).padStart(2, '0'))
+            .join('');
     }
 
     const loginForm = document.getElementById('login-form');
 
-    loginForm.addEventListener('submit', async function(event) {
+    loginForm.addEventListener('submit', async function (event) {
         event.preventDefault();
 
         const emailDigitado = document.getElementById('email').value;
@@ -24,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // 1. Verifica se encontrou alguém com esse e-mail
             if (usuariosEncontrados.length === 0) {
-                alert("Usuário não encontrado. Por favor, cadastre-se.");
+                alert('Usuário não encontrado. Por favor, cadastre-se.');
                 return;
             }
 
@@ -41,12 +42,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 window.location.href = 'dashboard.html';
             } else {
                 // ERRO DE SENHA
-                alert("Senha incorreta.");
+                alert('Senha incorreta.');
             }
-
         } catch (erro) {
             console.error(erro);
-            alert("Erro ao conectar com o servidor.");
+            alert('Erro ao conectar com o servidor.');
         }
     });
 });

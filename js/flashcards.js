@@ -1,13 +1,12 @@
-document.addEventListener('DOMContentLoaded', function() {
-    
+document.addEventListener('DOMContentLoaded', function () {
     // 1. Elementos da Tela (DOM)
     const containerCard = document.querySelector('.card-body');
     const cardFrente = document.getElementById('card-frente');
     const cardTras = document.getElementById('card-tras');
-    
+
     const blocoRevelar = document.getElementById('bloco-revelar');
     const btnRevelar = blocoRevelar.querySelector('button');
-    
+
     const blocoDificuldade = document.getElementById('bloco-dificuldade');
     const blocoProximo = document.getElementById('bloco-proximo');
     const btnProximo = blocoProximo.querySelector('button');
@@ -40,33 +39,33 @@ document.addEventListener('DOMContentLoaded', function() {
         // Procura os elementos dentro da div 'card-frente'
         const labelIdioma = cardFrente.querySelector('p');
         const tituloPalavra = cardFrente.querySelector('h2');
-        
+
         // Define o texto (com tratamento de erro caso o elemento não exista)
-        if(labelIdioma) labelIdioma.textContent = itemAtual.idioma || 'Idioma';
-        if(tituloPalavra) tituloPalavra.textContent = itemAtual.palavra;
+        if (labelIdioma) labelIdioma.textContent = itemAtual.idioma || 'Idioma';
+        if (tituloPalavra) tituloPalavra.textContent = itemAtual.palavra;
 
         // --- PREENCHE O HTML (Verso) ---
         const tituloTraducao = cardTras.querySelector('h2');
-        if(tituloTraducao) tituloTraducao.textContent = itemAtual.traducao;
+        if (tituloTraducao) tituloTraducao.textContent = itemAtual.traducao;
 
         // --- RESETA O VISUAL (Estado Inicial) ---
         cardFrente.classList.remove('d-none'); // Mostra a frente
-        cardTras.classList.add('d-none');      // Esconde o verso
-        
+        cardTras.classList.add('d-none'); // Esconde o verso
+
         blocoRevelar.classList.remove('d-none'); // Mostra botão revelar
         blocoDificuldade.classList.add('d-none'); // Esconde botões de dificuldade
-        blocoProximo.classList.add('d-none');     // Esconde botão próximo
+        blocoProximo.classList.add('d-none'); // Esconde botão próximo
     }
 
     // 4. Evento: Clicar em Revelar
-    btnRevelar.addEventListener('click', function() {
+    btnRevelar.addEventListener('click', function () {
         // Esconde a frente e o botão revelar
         cardFrente.classList.add('d-none');
         blocoRevelar.classList.add('d-none');
 
         // Mostra o verso (tradução)
         cardTras.classList.remove('d-none');
-        
+
         // Mostra os controles de dificuldade e próximo
         blocoDificuldade.classList.remove('d-none');
         blocoProximo.classList.remove('d-none');
@@ -76,8 +75,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Para simplificar, vamos fazer qualquer botão de dificuldade ou "Próximo" avançar
     const botoesAvancar = [btnProximo, ...blocoDificuldade.querySelectorAll('button')];
 
-    botoesAvancar.forEach(btn => {
-        btn.addEventListener('click', function() {
+    botoesAvancar.forEach((btn) => {
+        btn.addEventListener('click', function () {
             avancarCard();
         });
     });

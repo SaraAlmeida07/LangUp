@@ -1,5 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
-    
+document.addEventListener('DOMContentLoaded', function () {
     const containerLista = document.getElementById('lista-palavras');
 
     // Função auxiliar para bandeiras
@@ -14,14 +13,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Adicionamos 'async' para poder usar o 'await' no fetch
     async function carregarLista() {
-        
         // JQUERY: Esconde antes de carregar
-        $('#lista-palavras').hide(); 
+        $('#lista-palavras').hide();
 
         try {
             // --- 1.  LER DA API (GET) ---
             const resposta = await fetch('http://localhost:3000/palavras');
-            
+
             if (!resposta.ok) {
                 throw new Error('Erro ao conectar com o servidor');
             }
@@ -46,7 +44,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // 4. Desenhar os cards
             palavrasSalvas.reverse().forEach((palavra) => {
-                
                 const bandeira = getBandeira(palavra.idioma);
 
                 const cardHTML = `
@@ -67,13 +64,12 @@ document.addEventListener('DOMContentLoaded', function() {
                         </div>
                     </div>
                 `;
-                
+
                 containerLista.innerHTML += cardHTML;
             });
 
             // JQUERY: Animação de entrada
-            $('#lista-palavras').fadeIn(800); 
-
+            $('#lista-palavras').fadeIn(800);
         } catch (erro) {
             console.error('Erro:', erro);
             containerLista.innerHTML = `<p class="text-center text-danger mt-5">Erro ao carregar dados. Verifique se o json-server está rodando.</p>`;
@@ -82,23 +78,22 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // --- Função de Deletar com API (DELETE) ---
-    window.deletarPalavra = async function(id) {
-        if(confirm("Tem certeza que deseja excluir esta palavra permanentemente?")) {
+    window.deletarPalavra = async function (id) {
+        if (confirm('Tem certeza que deseja excluir esta palavra permanentemente?')) {
             try {
                 // Envia o comando DELETE para o servidor com o ID específico
                 await fetch(`http://localhost:3000/palavras/${id}`, {
                     method: 'DELETE'
                 });
-                
+
                 // Recarrega a lista para mostrar que sumiu
                 carregarLista();
-                
             } catch (erro) {
                 alert('Erro ao excluir. Tente novamente.');
                 console.error(erro);
             }
         }
-    }
+    };
 
     // Inicia a função
     carregarLista();

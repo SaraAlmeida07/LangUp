@@ -1,5 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
-    
+document.addEventListener('DOMContentLoaded', function () {
     // 1. CLASSE (MOLDE)
     class Palavra {
         constructor(palavra, traducao, idioma, definicao, exemplo) {
@@ -14,10 +13,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // 2. LÓGICA DO BOTÃO LIMPAR
     const btnLimpar = document.querySelector('#btn-limpar');
     if (btnLimpar) {
-        btnLimpar.addEventListener('click', function() {
-            document.querySelectorAll('#form-cadastro input, #form-cadastro textarea, #form-cadastro select')
-                .forEach(campo => campo.value = '');
-            
+        btnLimpar.addEventListener('click', function () {
+            document
+                .querySelectorAll('#form-cadastro input, #form-cadastro textarea, #form-cadastro select')
+                .forEach((campo) => (campo.value = ''));
+
             // Foca no campo que estiver visível
             const pDesk = document.getElementById('palavra-desktop');
             const pMob = document.getElementById('palavra-mobile');
@@ -36,22 +36,22 @@ document.addEventListener('DOMContentLoaded', function() {
         const idiomaSelecionado = document.getElementById('idioma').value;
 
         if (!palavra) {
-            alert("Por favor, digite uma palavra para buscar.");
+            alert('Por favor, digite uma palavra para buscar.');
             return;
         }
 
         if (idiomaSelecionado !== 'ingles') {
-            alert("⚠️ Nesta versão, a busca automática está disponível apenas para Inglês.");
+            alert('⚠️ Nesta versão, a busca automática está disponível apenas para Inglês.');
             return;
         }
 
         // Feedback visual nos botões
         const botoesBusca = document.querySelectorAll('#btn-buscar-api-desktop, #btn-buscar-api-mobile');
-        botoesBusca.forEach(btn => btn.textContent = "Buscando...");
+        botoesBusca.forEach((btn) => (btn.textContent = 'Buscando...'));
 
         try {
             const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${palavra}`);
-            
+
             if (!response.ok) {
                 throw new Error('Palavra não encontrada');
             }
@@ -63,15 +63,14 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('definicao').value = definicaoEncontrada;
 
             // Preenche o Exemplo (se houver)
-            if(dados[0].meanings[0].definitions[0].example) {
+            if (dados[0].meanings[0].definitions[0].example) {
                 document.getElementById('exemplo').value = dados[0].meanings[0].definitions[0].example;
             }
-
         } catch (erro) {
             console.error(erro);
-            alert("Não encontramos uma definição para esta palavra.");
+            alert('Não encontramos uma definição para esta palavra.');
         } finally {
-            botoesBusca.forEach(btn => btn.textContent = "Buscar Definição");
+            botoesBusca.forEach((btn) => (btn.textContent = 'Buscar Definição'));
         }
     }
 
@@ -82,15 +81,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const btnBuscarMobile = document.getElementById('btn-buscar-api-mobile');
     if (btnBuscarMobile) btnBuscarMobile.addEventListener('click', buscarDefinicao);
 
-
     // 5. EVENTO DE SALVAR (SUBMIT)
     const formCadastro = document.querySelector('#form-cadastro');
 
-    formCadastro.addEventListener('submit', async function(event) { 
+    formCadastro.addEventListener('submit', async function (event) {
         event.preventDefault();
 
         if (!formCadastro.checkValidity()) {
-            alert("Por favor, preencha os campos obrigatórios.");
+            alert('Por favor, preencha os campos obrigatórios.');
             return;
         }
 
@@ -121,7 +119,6 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 alert('Erro ao salvar no servidor.');
             }
-
         } catch (erro) {
             console.error('Erro:', erro);
             alert('Erro de conexão. Verifique o json-server.');
