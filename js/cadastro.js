@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // 2. LÓGICA DO BOTÃO LIMPAR
+    //  LÓGICA DO BOTÃO LIMPAR
     const btnLimpar = document.querySelector('#btn-limpar');
     if (btnLimpar) {
         btnLimpar.addEventListener('click', function () {
@@ -24,6 +24,44 @@ document.addEventListener('DOMContentLoaded', function () {
             if (pDesk && pDesk.offsetParent !== null) pDesk.focus();
             else if (pMob) pMob.focus();
         });
+    }
+    //Filtragem da Saida do botão de buscar definição
+
+    function extrairMelhorDefinicao(apiResponse) {
+        // Se não tiver nada na resposta, devolve vazio
+        if (!Array.isArray(apiResponse) || apiResponse.length === 0) return '';
+
+        try {
+            // Pega todos os "meanings" da palavra
+            const meanings = apiResponse[0].meanings || [];
+            const todasDefinicoes = [];
+
+            // Percorre TODOS os meanings
+            meanings.forEach((meaning) => {
+                meaning.definitions.forEach((def) => {
+                    if (def.definition) {
+                        todasDefinicoes.push(def.definition); // salva todas
+                    }
+                });
+            });
+
+            // Agora filtramos as ruins
+            const filtradas = todasDefinicoes.filter(
+                (def) =>
+                    def.length > 15 && // deve ter tamanho mínimo
+                    !def.startsWith('(') && // remove "(of people)"
+                    /[a-zA-Z]/.test(def) // garante letras
+            );
+
+            if (filtradas.length === 0) return '';
+
+            // Ordena pela maior definição (mais completa)
+            filtradas.sort((a, b) => b.length - a.length);
+
+            return filtradas[0];
+        } catch {
+            return '';
+        }
     }
 
     // 3. FUNÇÃO DA API (BUSCAR DEFINIÇÃO)
@@ -45,6 +83,11 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
+        if (palavra.includes(' ')) {
+            alert('A definição automática funciona apenas para palavras isoladas.');
+            return;
+        }
+
         // Feedback visual nos botões
         const botoesBusca = document.querySelectorAll('#btn-buscar-api-desktop, #btn-buscar-api-mobile');
         botoesBusca.forEach((btn) => (btn.textContent = 'Buscando...'));
@@ -59,8 +102,8 @@ document.addEventListener('DOMContentLoaded', function () {
             const dados = await response.json();
 
             // Preenche a Definição
-            const definicaoEncontrada = dados[0].meanings[0].definitions[0].definition;
-            document.getElementById('definicao').value = definicaoEncontrada;
+            const melhorDef = extrairMelhorDefinicao(dados);
+            document.getElementById('definicao').value = melhorDef || 'Nenhuma definição útil encontrada.';
 
             // Preenche o Exemplo (se houver)
             if (dados[0].meanings[0].definitions[0].example) {
