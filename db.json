@@ -19,14 +19,6 @@
       "dificuldade": "facil"
     },
     {
-      "id": "d89d",
-      "palavra": "Love",
-      "traducao": "Amor",
-      "idioma": "ingles",
-      "definicao": "Strong affection.",
-      "exemplo": "I Love you"
-    },
-    {
       "id": "e816",
       "palavra": "Teacher",
       "traducao": "Professor",
@@ -49,6 +41,30 @@
       "idioma": "ingles",
       "definicao": "A human female who donates a fertilized egg or donates a body cell which has resulted in a clone.",
       "exemplo": "He had something of his mother in him."
+    },
+    {
+      "id": "f1e5",
+      "palavra": "home",
+      "traducao": "Lar",
+      "idioma": "ingles",
+      "definicao": "The locality where a thing is usually found, or was first found, or where it is naturally abundant; habitat; seat.",
+      "exemplo": ""
+    },
+    {
+      "id": "bc9d",
+      "palavra": "Te quiero",
+      "traducao": "Te amo",
+      "idioma": "espanhol",
+      "definicao": "",
+      "exemplo": "Adios mi amor, te quiero mucho!"
+    },
+    {
+      "id": "09ae",
+      "palavra": "Run",
+      "traducao": "correr",
+      "idioma": "ingles",
+      "definicao": "The horizontal distance to which a drift may be carried, either by licence of the proprietor of a mine or by the nature of the formation; also, the direction which a vein of ore or other substance takes.",
+      "exemplo": ""
     }
   ],
   "usuarios": [
@@ -93,6 +109,20 @@
       "email": "roni@gmail.com",
       "telefone": "(41) 55555",
       "senha": "5dc088487fb505024591604c00eadbd8607ea049dc46857eb803b45e205640f6"
+    },
+    {
+      "id": "04a9",
+      "nome": "Amanda",
+      "email": "amanda@gmail.com",
+      "telefone": "(55) 55555-55",
+      "senha": "5dc088487fb505024591604c00eadbd8607ea049dc46857eb803b45e205640f6"
+    },
+    {
+      "id": "9fd7",
+      "nome": "teste",
+      "email": "teste@gmail.com",
+      "telefone": "(45) 88785-846",
+      "senha": "8bb0cf6eb9b17d0f7d22b456f121257dc1254e1f01665370476383ea776df414"
     }
   ]
 }

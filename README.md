@@ -90,8 +90,11 @@ O projeto cumpre os seguintes requisitos da disciplina:
 - [x] **RA2 - Formulários:**
     - Validação HTML5 (`required`, `minlength`) e Regex customizado.
     - Feedback visual de validação (bordas coloridas).
+    - Elementos de seleção (select e checkbox).
+    - Leitura e escrita no Local Storage.
 - [x] **RA3 - Ferramentas:**
     - Configuração de ambiente Node.js/NPM e versionamento Git.
+    - Organização modular dos arquivos.
     - Formatação automática com **Prettier**.
 - [x] **RA4 - Bibliotecas JS:**
     - Uso de **jQuery** para animações de interface.
