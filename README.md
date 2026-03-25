@@ -1,6 +1,6 @@
 # 🌍 LangUp - Seu Vocabulário ao Próximo Nível
 
-O **LangUp** é uma aplicação web progressiva (PWA) projetada para ajudar estudantes de idiomas a organizar, expandir e revisar seu vocabulário de forma eficiente. O projeto utiliza técnicas de repetição através de Flashcards interativos e consumo de APIs para enriquecimento de dados.
+O **LangUp** é uma aplicação web projetada para ajudar estudantes de idiomas a organizar, expandir e revisar seu vocabulário de forma eficiente. O projeto utiliza técnicas de repetição através de Flashcards interativos e consumo de API para enriquecimento de dados.
 
 ## ✒️ Autor
 
